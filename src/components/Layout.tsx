@@ -7,7 +7,7 @@ import styles from '../styles/Layout.module.css';
 export default function Layout() {
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Art Search Directory</h1>
+            <h1 className={styles.title}>Book Search Directory</h1>
 
             <nav className={styles.navContainer}>
                 <LinkElement

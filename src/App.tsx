@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Search from './pages/Search';
 import Gallery from './pages/Gallery';
-import ArtPiece from './pages/ArtPiece';
+import BookView from './pages/BookView';
 
 import Layout from './components/Layout';
 
@@ -14,7 +14,7 @@ export default function App() {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Search />} />
-                    <Route path='piece/:id' element={<ArtPiece />} />
+                    <Route path='piece/:id' element={<BookView />} />
                     <Route path='gallery' element={<Gallery />} />
                     <Route path='search' element={<Search />} />
                     <Route index element={<Search />} />
