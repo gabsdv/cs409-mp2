@@ -17,6 +17,7 @@ export default function Search() {
     const [input, setInput] = useState<string>('');
     const [sortBy, setSortBy] = useState<string>('rating');
     const [direction, setDirection] = useState<string>('ASC');
+    console.log(books)
 
 
     const fetchBooks = async () => {
