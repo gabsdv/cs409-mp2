@@ -1,0 +1,39 @@
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.genreContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.genre {
+    padding: 5px 10px;
+    background-color: #4a7796;
+    color: white;
+    cursor: pointer;
+}
+
+.selectedGenre {
+    background-color: #1d3d52ff;
+}
+
+
+.bookListContainer {
+    width: 100%;
+}
+
+.bookList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}

@@ -67,3 +67,22 @@ export const getBook = async (id: number) => {
         return null;
     }
 };
+
+
+export const browseGenre = async (genre: string) => {
+    try {
+        const response = await axios.get(`${URL}/search-books`, {
+            params: {
+                ...(genre && { genres: genre }),
+                number: 100
+            },
+            headers: {
+                'x-api-key': API_KEY
+            }
+        });
+        console.log(response.data)
+        return response.data;
+    } catch (e) {
+        console.log('Error fetching books: ', e);
+    }
+};
