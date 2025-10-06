@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 
 import CheckIfLoading from '../components/CheckIfLoading';
 
@@ -12,14 +12,17 @@ import { BookFull, getBook } from '../util/api';
 
 export default function BookView() {
     const { id } = useParams();
+    const location = useLocation();
 
     const [book, setBook] = useState<BookFull | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
     const currentId = Number(id);
-    const prevId = currentId - 1;
-    const nextId = currentId + 1;
+    const bookIds = location.state?.bookIds || [];
+    const currentIndex = bookIds.indexOf(currentId);
 
+    const prevId = currentIndex > 0 ? bookIds[currentIndex - 1] : null;
+    const nextId = currentIndex < bookIds.length - 1 ? bookIds[currentIndex + 1] : null;
 
     const fetchBook = useCallback(async () => {
         setLoading(true);
@@ -37,12 +40,14 @@ export default function BookView() {
     return (
         <CheckIfLoading loading={loading}>
             <div className={styles.container}>
-                {prevId >= 0 && <Link 
-                    to={`/book/${prevId}`} 
-                    className={styles.navButton}
-                >
-                    {'<'}
-                </Link>}
+                {prevId &&
+                    <Link 
+                        to={`/book/${prevId}`} 
+                        className={styles.navButton}
+                    >
+                        {'<'}
+                    </Link>
+                }
 
                 {book ?
                     <div className={styles.bookContainer}>
@@ -108,12 +113,14 @@ export default function BookView() {
                     </div>
                 }
 
-                <Link 
-                    to={`/book/${nextId}`} 
-                    className={styles.navButton}
-                >
-                    {'>'}
-                </Link>
+                {nextId &&
+                    <Link 
+                        to={`/book/${nextId}`} 
+                        className={styles.navButton}
+                    >
+                        {'>'}
+                    </Link>
+                }
             </div>
         </CheckIfLoading>
     );

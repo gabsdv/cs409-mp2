@@ -98,7 +98,13 @@ export default function Search() {
                             <h3>No books found</h3>
                         :
                             <div className={styles.bookList}>
-                                {books.map((b) => <BookListElement key={b.id} book={b} />)}
+                                {books.map((b) => (
+                                    <BookListElement
+                                        key={b.id}
+                                        book={b}
+                                        allBookIds={books.map(book => book.id)}
+                                    />
+                                ))}
                             </div>
                         }
                     </CheckIfLoading>

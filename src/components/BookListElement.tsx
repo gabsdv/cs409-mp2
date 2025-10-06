@@ -8,11 +8,15 @@ import { BookSimple } from '../util/api';
 
 interface BookListElementProps {
     book: BookSimple;
+    allBookIds: number[];
 }
 
-export default function BookListElement({ book }: BookListElementProps) {
+export default function BookListElement({ book, allBookIds }: BookListElementProps) {
     return (
-        <Link to={`/book/${book.id}`}>
+        <Link
+            to={`/book/${book.id}`}
+            state={{ bookIds: allBookIds }}
+        >
             <div className={styles.container}>
                 <img
                     src={book.image}
