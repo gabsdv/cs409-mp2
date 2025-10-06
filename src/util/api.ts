@@ -29,7 +29,8 @@ export type BookFull = BookSimple & {
 
 
 const URL = 'https://api.bigbookapi.com';
-const API_KEY = '16aeba6ea47b4275acce7b591ff5712b';
+// const API_KEY = '16aeba6ea47b4275acce7b591ff5712b';
+const API_KEY = '1d641eb945ee48fe8245886e1dff6bfd';
 
 
 
@@ -49,5 +50,20 @@ export const searchBooks = async (query: string, sort: string, sortDirection: st
         return response.data;
     } catch (e) {
         console.log('Error fetching books: ', e);
+    }
+};
+
+
+export const getBook = async (id: number) => {
+        try {
+        const response = await axios.get(`${URL}/${id}`, {
+            headers: {
+                'x-api-key': API_KEY
+            }
+        });
+        return response.data;
+    } catch (e) {
+        console.log('Error fetching books: ', e);
+        return null;
     }
 };
