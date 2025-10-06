@@ -1,0 +1,65 @@
+
+
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.searchContainer {
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #6c9cbd;
+    border-radius: 10px;
+}
+
+
+
+
+.searchInput {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 1rem;
+    border: 1px solid #94a3b8;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.sortLabel {
+    display: block;
+    font-weight: 500;
+    color: white;
+}
+
+.sortSelect {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #94a3b8;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: white;
+    cursor: pointer;
+}
+
+.radioLabel input {
+    cursor: pointer;
+}
