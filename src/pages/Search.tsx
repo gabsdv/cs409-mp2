@@ -20,20 +20,20 @@ export default function Search() {
     console.log(books)
 
 
-    const fetchBooks = async () => {
-        console.log(input, sortBy, direction)
-        if (!input) {
-            setBooks([]);
-            return;
-        }
-        const r = await searchBooks(input, sortBy, direction);
-        console.log(r)
-        console.log(r.books.length)
-    }
 
     useEffect(() => {
+        const fetchBooks = async () => {
+            console.log(input, sortBy, direction)
+            if (!input) {
+                setBooks([]);
+                return;
+            }
+            const r = await searchBooks(input, sortBy, direction);
+            console.log(r)
+            console.log(r.books.length)
+        }
         fetchBooks();
-    }, [fetchBooks, input, sortBy, direction]);
+    }, [input, sortBy, direction]);
 
 
     return (
