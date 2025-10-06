@@ -1,0 +1,15 @@
+.container {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c9cbd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}

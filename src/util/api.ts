@@ -29,7 +29,7 @@ export type BookFull = BookSimple & {
 
 
 const URL = 'https://api.bigbookapi.com';
-const API_KEY = '9ee7ebd3e81f4307be9535437d41b432';
+const API_KEY = '16aeba6ea47b4275acce7b591ff5712b';
 
 
 
@@ -43,7 +43,7 @@ export const searchBooks = async (query: string, sort: string, sortDir: string) 
                 number: 100
             },
             headers: {
-                'api-key': API_KEY
+                'x-api-key': API_KEY
             }
         });
         return response.data;

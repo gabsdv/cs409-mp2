@@ -1,38 +1,39 @@
 import { useEffect, useState } from 'react';
 
-import { searchBooks } from '../util/api';
+import CheckIfLoading from '../components/CheckIfLoading';
+import BookListElement from '../components/BookListElement';
+
+import { BookSimple, searchBooks } from '../util/api';
 
 import styles from '../styles/Search.module.css';
 
 
 
-type BookType = {
-
-};
-
-
-
 export default function Search() {
-    const [books, setBooks] = useState<BookType[]>([]);
+    const [books, setBooks] = useState<BookSimple[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
     const [input, setInput] = useState<string>('');
     const [sortBy, setSortBy] = useState<string>('rating');
     const [direction, setDirection] = useState<string>('ASC');
-    console.log(books)
-
 
 
     useEffect(() => {
-        const fetchBooks = async () => {
-            console.log(input, sortBy, direction)
-            if (!input) {
-                setBooks([]);
-                return;
+        setLoading(true);
+        const timer = setTimeout(() => {
+            const fetchBooks = async () => {
+                if (!input) {
+                    setBooks([]);
+                    setLoading(false);
+                    return;
+                }
+                const data = await searchBooks(input, sortBy, direction);
+                setBooks(data.books.map((b: any) => b[0]));
+                setLoading(false);
             }
-            const r = await searchBooks(input, sortBy, direction);
-            console.log(r)
-            console.log(r.books.length)
-        }
-        fetchBooks();
+            fetchBooks();
+        }, 1500);
+
+        return () => clearTimeout(timer);
     }, [input, sortBy, direction]);
 
 
@@ -82,19 +83,19 @@ export default function Search() {
                 </div>
             </div>
 
-            <div>
-                {/* {books.map((b) => <Book b={b} />)} */}
-            </div>
+            {input &&
+                <div className={styles.bookListContainer}>
+                    <CheckIfLoading loading={loading}>
+                        {(books.length == 0) ?
+                            <h3>No books found</h3>
+                        :
+                            <div className={styles.bookList}>
+                                {books.map((b) => <BookListElement book={b} />)}
+                            </div>
+                        }
+                    </CheckIfLoading>
+                </div>
+            }
         </div>
     );
 }
-
-
-
-// function Book({ book }: { book: BookType }) {
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// }
