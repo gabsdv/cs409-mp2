@@ -37,12 +37,12 @@ export default function BookView() {
     return (
         <CheckIfLoading loading={loading}>
             <div className={styles.container}>
-                <Link 
+                {prevId >= 0 && <Link 
                     to={`/book/${prevId}`} 
                     className={styles.navButton}
                 >
                     {'<'}
-                </Link>
+                </Link>}
 
                 {book ?
                     <div className={styles.bookContainer}>
