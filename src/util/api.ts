@@ -29,7 +29,9 @@ export type BookFull = BookSimple & {
 
 
 const URL = 'https://api.bigbookapi.com';
+// ACCOUNT 1:
 // const API_KEY = '16aeba6ea47b4275acce7b591ff5712b';
+// ACCOUNT 2:
 const API_KEY = '1d641eb945ee48fe8245886e1dff6bfd';
 
 
