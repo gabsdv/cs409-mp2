@@ -33,13 +33,13 @@ const API_KEY = '16aeba6ea47b4275acce7b591ff5712b';
 
 
 
-export const searchBooks = async (query: string, sort: string, sortDir: string) => {
+export const searchBooks = async (query: string, sort: string, sortDirection: string) => {
     try {
         const response = await axios.get(`${URL}/search-books`, {
             params: {
                 query,
                 sort,
-                'sort-direction': sortDir,
+                'sort-direction': sortDirection,
                 number: 100
             },
             headers: {
@@ -50,4 +50,4 @@ export const searchBooks = async (query: string, sort: string, sortDir: string) 
     } catch (e) {
         console.log('Error fetching books: ', e);
     }
-}
+};

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import CheckIfLoading from '../components/CheckIfLoading';
 import BookListElement from '../components/BookListElement';
@@ -17,24 +17,32 @@ export default function Search() {
     const [direction, setDirection] = useState<string>('ASC');
 
 
+    const changeDirection = useCallback((newDirection: string) => {
+        setBooks(prev => [...prev].reverse());
+        setDirection(newDirection);
+    }, [setDirection, setBooks]);
+
+
+    const fetchBooks = useCallback(async () => {
+        if (!input) {
+            setBooks([]);
+            setLoading(false);
+            return;
+        }
+        const data = await searchBooks(input, sortBy, direction);
+        setBooks(data.books.map((b: any) => b[0]));
+        setLoading(false);
+    }, [input, sortBy, direction, setBooks, setLoading]);
+
+
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            const fetchBooks = async () => {
-                if (!input) {
-                    setBooks([]);
-                    setLoading(false);
-                    return;
-                }
-                const data = await searchBooks(input, sortBy, direction);
-                setBooks(data.books.map((b: any) => b[0]));
-                setLoading(false);
-            }
             fetchBooks();
         }, 1500);
 
         return () => clearTimeout(timer);
-    }, [input, sortBy, direction]);
+    }, [input, sortBy]);
 
 
     return (
@@ -65,7 +73,7 @@ export default function Search() {
                             name='order'
                             value='ASC'
                             checked={direction === 'ASC'}
-                            onChange={(e) => setDirection(e.target.value)}
+                            onChange={(e) => changeDirection(e.target.value)}
                             defaultChecked
                         />
                         ascending
@@ -76,7 +84,7 @@ export default function Search() {
                             name='order'
                             value='DESC'
                             checked={direction === 'DESC'}
-                            onChange={(e) => setDirection(e.target.value)}
+                            onChange={(e) => changeDirection(e.target.value)}
                         />
                         descending
                     </label>
@@ -90,7 +98,7 @@ export default function Search() {
                             <h3>No books found</h3>
                         :
                             <div className={styles.bookList}>
-                                {books.map((b) => <BookListElement book={b} />)}
+                                {books.map((b) => <BookListElement key={b.id} book={b} />)}
                             </div>
                         }
                     </CheckIfLoading>

@@ -1,4 +1,4 @@
-container {
+.container {
     padding: 10px;
     width: 100%;
     display: flex;
@@ -6,7 +6,7 @@ container {
     justify-content: center;
 }
 
-title {
+.title {
     font-size: 20px;
     text-align: center;
 }
