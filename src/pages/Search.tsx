@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import CheckIfLoading from '../components/CheckIfLoading';
 import BookListElement from '../components/BookListElement';
@@ -15,6 +15,11 @@ export default function Search() {
     const [input, setInput] = useState<string>('');
     const [sortBy, setSortBy] = useState<string>('rating');
     const [direction, setDirection] = useState<string>('ASC');
+    const directionRef = useRef(direction);
+    
+    useEffect(() => {
+        directionRef.current = direction;
+    }, [direction]);
 
 
     const changeDirection = useCallback((newDirection: string) => {
@@ -30,7 +35,7 @@ export default function Search() {
                 setLoading(false);
                 return;
             }
-            const data = await searchBooks(input, sortBy, direction);
+            const data = await searchBooks(input, sortBy, directionRef.current);
             setBooks(data.books.map((b: any) => b[0]));
             setLoading(false);
         };
