@@ -10,11 +10,11 @@ import Layout from './components/Layout';
 
 export default function App() {
     return (
-        <BrowserRouter basename='/mp2'>
+        <BrowserRouter basename='/cs409-mp2'>
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Search />} />
-                    <Route path='piece/:id' element={<BookView />} />
+                    <Route path='book/:id' element={<BookView />} />
                     <Route path='gallery' element={<Gallery />} />
                     <Route path='search' element={<Search />} />
                     <Route index element={<Search />} />
