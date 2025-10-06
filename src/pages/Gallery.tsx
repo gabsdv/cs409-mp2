@@ -42,15 +42,15 @@ export default function Gallery() {
         setSelectedGenre(newGenre);
     }, []);
 
-    const fetchBooks = useCallback(async () => {
-        setLoading(true);
-        const genre = selectedGenre == 'all' ? '' : selectedGenre;
-        const data = await browseGenre(genre);
-        setBooks(data.books.map((b: any) => b[0]));
-        setLoading(false);
-    }, [selectedGenre, setBooks, setLoading]);
 
     useEffect(() => {
+        const fetchBooks = async () => {
+            setLoading(true);
+            const genre = selectedGenre == 'all' ? '' : selectedGenre;
+            const data = await browseGenre(genre);
+            setBooks(data.books.map((b: any) => b[0]));
+            setLoading(false);
+        };
         fetchBooks();
     }, [selectedGenre]);
 

@@ -23,19 +23,18 @@ export default function Search() {
     }, [setDirection, setBooks]);
 
 
-    const fetchBooks = useCallback(async () => {
-        if (!input) {
-            setBooks([]);
-            setLoading(false);
-            return;
-        }
-        const data = await searchBooks(input, sortBy, direction);
-        setBooks(data.books.map((b: any) => b[0]));
-        setLoading(false);
-    }, [input, sortBy, direction, setBooks, setLoading]);
-
-
     useEffect(() => {
+        const fetchBooks = async () => {
+            if (!input) {
+                setBooks([]);
+                setLoading(false);
+                return;
+            }
+            const data = await searchBooks(input, sortBy, direction);
+            setBooks(data.books.map((b: any) => b[0]));
+            setLoading(false);
+        };
+
         setLoading(true);
         const timer = setTimeout(() => {
             fetchBooks();
