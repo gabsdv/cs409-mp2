@@ -33,7 +33,7 @@ export default function Search() {
 
     useEffect(() => {
         fetchBooks();
-    }, [input, sortBy, direction]);
+    }, [fetchBooks, input, sortBy, direction]);
 
 
     return (
@@ -91,10 +91,10 @@ export default function Search() {
 
 
 
-function Book({ book }: { book: BookType }) {
-    return (
-        <div>
+// function Book({ book }: { book: BookType }) {
+//     return (
+//         <div>
             
-        </div>
-    );
-}
+//         </div>
+//     );
+// }
