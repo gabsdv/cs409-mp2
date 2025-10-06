@@ -98,7 +98,7 @@ export default function Search() {
             {input &&
                 <div className={styles.bookListContainer}>
                     <CheckIfLoading loading={loading}>
-                        {(books.length == 0) ?
+                        {(books.length === 0) ?
                             <h3>No books found</h3>
                         :
                             <div className={styles.bookList}>

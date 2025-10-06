@@ -46,7 +46,7 @@ export default function Gallery() {
     useEffect(() => {
         const fetchBooks = async () => {
             setLoading(true);
-            const genre = selectedGenre == 'all' ? '' : selectedGenre;
+            const genre = selectedGenre === 'all' ? '' : selectedGenre;
             const data = await browseGenre(genre);
             setBooks(data.books.map((b: any) => b[0]));
             setLoading(false);
@@ -72,7 +72,7 @@ export default function Gallery() {
             {selectedGenre &&
                 <div className={styles.bookListContainer}>
                     <CheckIfLoading loading={loading}>
-                        {(books.length == 0) ?
+                        {(books.length === 0) ?
                             <h3>No books found</h3>
                         :
                             <div className={styles.bookList}>
