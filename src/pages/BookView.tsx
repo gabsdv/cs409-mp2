@@ -44,6 +44,7 @@ export default function BookView() {
                     <Link 
                         to={`/book/${prevId}`} 
                         className={styles.navButton}
+                        state={{ bookIds }}
                     >
                         {'<'}
                     </Link>
@@ -117,6 +118,7 @@ export default function BookView() {
                     <Link 
                         to={`/book/${nextId}`} 
                         className={styles.navButton}
+                        state={{ bookIds }}
                     >
                         {'>'}
                     </Link>
